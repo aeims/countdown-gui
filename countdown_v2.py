@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 def countdown(client_date, msg, name):
     
     cntdown = client_date - datetime.now().replace(microsecond=0)
-    lbl = Label(root, text=f"{name} Countdown: {cntdown}")
+    lbl = Label(root, text=f"{name} Countdown: {cntdown}", fg='red', font=('arial', 15))
     lbl.grid(row=8, column=0)
 
     if cntdown == timedelta(0):

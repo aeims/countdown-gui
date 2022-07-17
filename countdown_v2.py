@@ -1,20 +1,19 @@
 from tkinter import *
 from tkinter import messagebox
 from datetime import datetime, timedelta
-# import sys
-# sys.setrecursionlimit(10000)
 
-def countdown(client_date, msg, name):
-    
+
+def countdown(client_date, msg, name, top):
     cntdown = client_date - datetime.now().replace(microsecond=0)
-    lbl = Label(root, text=f"{name} Countdown: {cntdown}", fg='red', font=('arial', 15))
-    lbl.grid(row=8, column=0)
+    Label(top, 
+        text=f"{name} Countdown: {cntdown}", 
+        fg='white', bg='purple', font=('calibri', 40, 'bold')).grid(row=0, column=0)
 
     if cntdown == timedelta(0):
         messagebox.showinfo('countdown', msg)
-        root.after(5000, root.destroy)
+        root.after(3000, root.destroy)
     else:
-        root.after(1000, lambda: countdown(client_date, msg, name))
+        root.after(1000, lambda: countdown(client_date, msg, name, top))
 
 
 root = Tk()
@@ -75,8 +74,9 @@ def btn_click():
     name = entry_name.get()
 
     client_date = datetime(year=year, month=month, day=day, hour=hour, minute=minute)
+    top = Toplevel()
 
-    countdown(client_date, msg, name)
+    countdown(client_date, msg, name, top)
 
 
 
